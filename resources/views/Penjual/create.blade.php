@@ -7,8 +7,8 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Basic form elements</h4>
-                        <p class="card-description"> Basic form elements </p>
+                        <h4 class="card-title">Buat Data Penjual</h4>
+                        <p class="card-description"><a href="{{url('penjual')}}"><button class="btn btn-primary me-2">Kembali</button></a></p>
                         <form class="forms-sample">
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
@@ -51,6 +51,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>
+                            <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </div>
