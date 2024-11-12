@@ -9,28 +9,35 @@
                     <div class="card-body">
                         <h4 class="card-title">Buat Data Penjual</h4>
                         <p class="card-description"><a href="{{url('penjual')}}"><button class="btn btn-primary me-2">Kembali</button></a></p>
-                        <form class="forms-sample">
+                        <form class="forms-sample" action="{{url('penjual/store')}}" method="POST">
+                            @csrf
                             <div class="form-group">
-                                <label for="exampleInputName1">Name</label>
-                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                <label for="exampleInputName1">Nama Barang</label>
+                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama Barang" name="nama">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail3">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                <label for="exampleInputEmail3">Lokasi</label>
+                                <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Lokasi" name="lokasi">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword4">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword4"
-                                    placeholder="Password">
+                                <label for="exampleInputPassword4">Harga</label>
+                                <input type="text" class="form-control" id="exampleInputPassword4"
+                                    placeholder="Harga" name="harga">
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelectGender">Gender</label>
-                                <select class="form-select" id="exampleSelectGender">
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                <label for="exampleSelectGender">Keterangan</label>
+                                <input type="text" class="form-control" id="exampleInputPassword4"
+                                    placeholder="Masukan keterangan untuk lokasi anda" name="keterangan">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Cocok untuk ?</label>
+                                <select name="idWaktu" class="form-control" id="">
+                                    <option value="1">Makan Pagi</option>
+                                    <option value="2">Makan Siang</option>
+                                    <option value="3">Makan Malam</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>File upload</label>
                                 <input type="file" name="img[]" class="file-upload-default">
                                 <div class="input-group col-xs-12">
@@ -40,15 +47,8 @@
                                         <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                     </span>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputCity1">City</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleTextarea1">Textarea</label>
-                                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                            </div>
+                            </div> -->
+                            
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                             <button class="btn btn-danger">Delete</button>

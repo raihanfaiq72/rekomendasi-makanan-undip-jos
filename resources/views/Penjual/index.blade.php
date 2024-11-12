@@ -8,14 +8,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Data Penjual</h4>
-                        <p class="card-description"> <a href="{{url('penjual/create')}}"><button type="button" class="btn btn-primary me-2">Tambah Penjual</button></a>
+                        <p class="card-description"> <a href="{{url('penjual/create')}}"><button type="button"
+                                    class="btn btn-primary me-2">Tambah Penjual</button></a>
                         </p>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th> Gambar </th>
-                                        <th> Nama  </th>
+                                        <th> Nama </th>
                                         <th> Lokasi </th>
                                         <th> Harga </th>
                                         <th> Status </th>
@@ -23,47 +24,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($data as $p)
                                     <tr>
                                         <td class="py-1">
                                             <img src="{{url('')}}/assets/assets/images/faces/face1.jpg" alt="image" />
                                         </td>
-                                        <td> Herman Beck </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td> $ 77.99 </td>
-                                        <td><label class="badge badge-danger">Tertunda</label></td>
-                                        <td><button type="submit" class="btn btn-primary me-2">edit</button></td>
+                                        <td>{{$p->nama}}</td>
+                                        <td>{{$p->lokasi}}</td>
+                                        <td>{{$p->harga}}</td>
+                                        <td><label class="badge badge-danger">
+                                                @if($p->status_rekomendasi == 1)
+                                                enable
+                                                @else
+                                                disable
+                                                @endif
+                                            </label></td>
+                                        <td><a href="{{url('penjual/'.$p->id)}}/edit"><button type="button" class="btn btn-primary me-2">edit</button></a></td>
                                     </tr>
+                                    @empty
+                                    <tr>
+                                        <p>Data Kosong</p>
+                                    </tr>
+                                    @endforelse
 
-                                    <tr>
-                                        <td class="py-1">
-                                            <img src="{{url('')}}/assets/assets/images/faces/face1.jpg" alt="image" />
-                                        </td>
-                                        <td> Herman Beck </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td> $ 77.99 </td>
-                                        <td><label class="badge badge-success">Aktif</label></td>
-                                        <td><button type="submit" class="btn btn-primary me-2">edit</button></td>
-                                    </tr>
-                        
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <!-- content-wrapper ends -->

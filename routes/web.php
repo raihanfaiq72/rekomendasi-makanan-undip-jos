@@ -19,12 +19,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/',[DashboardController::class,'index']);
+    Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
     // data penjual
     Route::get('penjual',[PenjualController::class , 'index']);
     Route::get('penjual/create',[PenjualController::class , 'create']);
     Route::post('penjual/store',[PenjualController::class , 'store']);
+    Route::get('penjual/{id}/edit',[PenjualController::class , 'edit']);
+
 });
 
 require __DIR__.'/auth.php';
