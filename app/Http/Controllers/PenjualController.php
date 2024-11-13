@@ -46,7 +46,7 @@ class PenjualController extends Controller
     public function edit($id)
     {
         return view('Penjual/edit',[
-            'data'  => mainmodels::where('id',$id)->first()
+            'data'  => mainmodel::where('id',$id)->first()
         ]);
     }
 
@@ -66,4 +66,16 @@ class PenjualController extends Controller
 
         }
     }
+
+    public function destroy(Request $request,$id)
+    {
+        try{
+            $data = mainmodel::findOrFail($id);
+            $data->delete();
+            return redirect('penjual')->with('sukses','data berhasil dihapus');
+        }catch(\Exception $e){
+            return redirect('penjual')->with('gagal','data gagal dihapus');
+        }
+    }
+
 }

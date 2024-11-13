@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('penjual/create',[PenjualController::class , 'create']);
     Route::post('penjual/store',[PenjualController::class , 'store']);
     Route::get('penjual/{id}/edit',[PenjualController::class , 'edit']);
+    Route::post('penjual/update',[PenjualController::class , 'update']);
 
 });
 
