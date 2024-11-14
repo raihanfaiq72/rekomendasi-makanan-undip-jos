@@ -11,11 +11,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('penjual')}}">
                             <i class="menu-icon mdi mdi-card-text-outline"></i>
-                            <span class="menu-title">Data Penjual Makanan</span>
+                            <span class="menu-title">Data Penjual</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="docs/documentation.html">
+                        <a class="nav-link" href="{{url('mau-makan-apa')}}">
                             <i class="menu-icon mdi mdi-chart-line"></i>
                             <span class="menu-title">Mau makan apa?</span>
                         </a>

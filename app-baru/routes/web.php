@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MauMakanController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -22,14 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
     // data penjual
-    // Route::get('penjual',[PenjualController::class , 'index']);
-    // Route::get('penjual/create',[PenjualController::class , 'create']);
-    // Route::post('penjual/store',[PenjualController::class , 'store']);
-    // Route::get('penjual/{id}/edit',[PenjualController::class , 'edit']);
-    // Route::post('penjual/update{id}',[PenjualController::class , 'update']);
-
     Route::resource('penjual',PenjualController::class);
-
+    
+    // mau makan apa?
+    Route::get('mau-makan-apa',[MauMakanController::class,'index']); 
+    Route::post('cari',[MauMakanController::class,'cari']);
 });
 
 require __DIR__.'/auth.php';
