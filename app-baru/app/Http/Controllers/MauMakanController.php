@@ -16,7 +16,7 @@ class MauMakanController extends Controller
     {
         $keyword = $request->input('nama');
 
-        $hasil   = mainmodel::where('nama','like','%'.$keyword)->get();
+        $hasil   = mainmodel::where('nama','like','%'.$keyword)->where('status_rekomendasi',1)->get();
 
         return view('maumakan.cari',[
             'hasil'     => $hasil,

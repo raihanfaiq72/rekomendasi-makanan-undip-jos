@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{url('')}}/assets/assets/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{url('')}}/assets/assets/images/favicon.png" />
+
+    <!-- leafletjs -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body class="with-welcome-text">`
@@ -61,6 +64,9 @@
     <script src="{{url('')}}/assets/assets/js/dashboard.js"></script>
     <!-- <script src="{{url('')}}/assets/assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
+
+    <!-- leafletjs -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 
 </html>
