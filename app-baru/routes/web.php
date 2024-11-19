@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MauMakanController;
+use App\Http\Controllers\TidakAktifController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -28,6 +29,11 @@ Route::middleware('auth')->group(function () {
     // mau makan apa?
     Route::get('mau-makan-apa',[MauMakanController::class,'index']); 
     Route::post('cari',[MauMakanController::class,'cari']);
+    Route::get('cari/{id}',[MauMakanController::class,'show']);
+
+    Route::get('tidak-aktif',[TidakAktifController::class , 'index']);
+
+    Route::post('button-tidak-aktif/{id}',[TidakAktifController::class,'tidak']);
 });
 
 require __DIR__.'/auth.php';

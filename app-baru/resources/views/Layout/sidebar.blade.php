@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="docs/documentation.html">
+                        <a class="nav-link" href="{{url('tidak-aktif')}}">
                             <i class="menu-icon mdi mdi-file-document"></i>
                             <span class="menu-title">Makanan tidak tampil</span>
                         </a>

@@ -8,7 +8,7 @@
                 </div>
                 <div>
                     <a class="navbar-brand brand-logo" href="index.html">
-                        <img src="{{url('')}}/assets/assets/images/logo.svg" alt="logo" />
+                        <img src="{{url('')}}/assets/assets/images/LOGO MEKANIKACE xxx PNG-01.png" alt="logo" />
                     </a>
                     <a class="navbar-brand brand-logo-mini" href="index.html">
                         <img src="{{url('')}}/assets/assets/images/logo-mini.svg" alt="logo" />
@@ -19,7 +19,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item fw-semibold d-none d-lg-block ms-0">
                         <h1 class="welcome-text">Welcome back, <span class="text-black fw-bold">{{ Auth::user()->name }}</span></h1>
-                        <h3 class="welcome-sub-text">Your performance summary this week </h3>
+                      
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">

@@ -16,11 +16,20 @@ class MauMakanController extends Controller
     {
         $keyword = $request->input('nama');
 
-        $hasil   = mainmodel::where('nama','like','%'.$keyword)->where('status_rekomendasi',1)->get();
+        $hasil = mainmodel::where('nama', 'like', '%' . $keyword . '%')->where('status_rekomendasi', 1)->get();
 
-        return view('maumakan.cari',[
-            'hasil'     => $hasil,
-            'keyword'   => $keyword
+        return view('maumakan.cari', [
+            'hasil' => $hasil,
+            'keyword' => $keyword
+        ]);
+    }
+
+    public function show($id)
+    {
+        $hasil = mainmodel::where('id',$id)->first();
+
+        return view('maumakan.show',[
+            'hasil' => $hasil
         ]);
     }
 }

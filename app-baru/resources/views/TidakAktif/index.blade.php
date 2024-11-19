@@ -7,18 +7,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Data Penjual</h4>
-                        <p class="card-description"> <a href="{{url('penjual/create')}}"><button type="button"
-                                    class="btn btn-primary me-2">Tambah Penjual</button></a>
-                        </p>
+                        <h4 class="card-title">Data Makanan Tidak Aktif</h4>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th> Gambar </th>
                                         <th> Nama </th>
-                                        <th> Lokasi </th>
-                                        <th> Harga </th>
                                         <th> Status </th>
                                         <th> Aksi </th>
                                     </tr>
@@ -30,18 +25,19 @@
                                             <img src="{{url('')}}/assets/assets/images/faces/face1.jpg" alt="image" />
                                         </td>
                                         <td>{{$p->nama}}</td>
-                                        <td>{{$p->lokasi}}</td>
-                                        <td>{{$p->harga}}</td>
-                                        <td>
-                                            @if($p->status_rekomendasi == 1)
-                                            <label class="badge badge-success">
-                                                Aktif
+                                        <td><label class="badge badge-danger">
+                                                @if($p->status_rekomendasi == 1)
+                                                enable
                                                 @else
-                                                <label class="badge badge-danger">
-                                                Tyda Aktif
+                                                disable
                                                 @endif
                                             </label></td>
-                                        <td><a href="{{url('penjual/'.$p->id)}}/edit"><button type="button" class="btn btn-primary me-2">edit</button></a></td>
+                                        <td>
+                                            <form action="{{url('button-tidak-aktif/'.$p->id)}}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-success" type="submit">Aktifkan</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>

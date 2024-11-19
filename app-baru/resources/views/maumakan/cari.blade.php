@@ -36,7 +36,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($hasil as $p)
+                                    {{-- Morning meals --}}
+                                    <tr>
+                                        <td colspan="6" class="text-center"><strong>Makan Pagi</strong></td>
+                                    </tr>
+                                    @forelse($hasil->where('idWaktu', 1) as $p)
                                     <tr>
                                         <td class="py-1">
                                             <img src="{{url('')}}/assets/assets/images/faces/face1.jpg" alt="image" />
@@ -45,47 +49,76 @@
                                         <td>{{ $p->lokasi }}</td>
                                         <td>{{ $p->harga }}</td>
                                         <td><label class="badge badge-{{ $p->status_rekomendasi ? 'success' : 'danger' }}">
-                                            {{ $p->status_rekomendasi ? 'Enable' : 'Disable' }}
+                                            {{ $p->status_rekomendasi ? 'Aktif' : 'Tyda Aktif' }}
                                             </label></td>
                                         <td>
-                                            <a href="{{ url('penjual/' . $p->id) . '/edit' }}">
-                                                <button type="button" class="btn btn-primary">Edit</button>
+                                            <a href="{{ url('cari/' . $p->id) }}">
+                                                <button type="button" class="btn btn-primary">Lihat</button>
                                             </a>
                                         </td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">Data Kosong</td>
+                                        <td colspan="6" class="text-center">Tidak ada data untuk makan pagi</td>
+                                    </tr>
+                                    @endforelse
+                                
+                                    {{-- Afternoon meals --}}
+                                    <tr>
+                                        <td colspan="6" class="text-center"><strong>Makan Siang</strong></td>
+                                    </tr>
+                                    @forelse($hasil->where('idWaktu', 2) as $p)
+                                    <tr>
+                                        <td class="py-1">
+                                            <img src="{{url('')}}/assets/assets/images/faces/face1.jpg" alt="image" />
+                                        </td>
+                                        <td>{{ $p->nama }}</td>
+                                        <td>{{ $p->lokasi }}</td>
+                                        <td>{{ $p->harga }}</td>
+                                        <td><label class="badge badge-{{ $p->status_rekomendasi ? 'success' : 'danger' }}">
+                                            {{ $p->status_rekomendasi ? 'Aktif' : 'Tyda Aktif' }}
+                                            </label></td>
+                                        <td>
+                                            <a href="{{ url('cari/' . $p->id) }}">
+                                                <button type="button" class="btn btn-primary">Lihat</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">Tidak ada data untuk makan siang</td>
+                                    </tr>
+                                    @endforelse
+                                
+                                    {{-- Evening meals --}}
+                                    <tr>
+                                        <td colspan="6" class="text-center"><strong>Makan Malam</strong></td>
+                                    </tr>
+                                    @forelse($hasil->where('idWaktu', 3) as $p)
+                                    <tr>
+                                        <td class="py-1">
+                                            <img src="{{url('')}}/assets/assets/images/faces/face1.jpg" alt="image" />
+                                        </td>
+                                        <td>{{ $p->nama }}</td>
+                                        <td>{{ $p->lokasi }}</td>
+                                        <td>{{ $p->harga }}</td>
+                                        <td><label class="badge badge-{{ $p->status_rekomendasi ? 'success' : 'danger' }}">
+                                            {{ $p->status_rekomendasi ? 'Aktif' : 'Tyda Aktif' }}
+                                            </label></td>
+                                        <td>
+                                            <a href="{{ url('cari/' . $p->id) }}">
+                                                <button type="button" class="btn btn-primary">Lihat</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">Tidak ada data untuk makan malam</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- Hasil Pencarian dan Peta -->
-                        <div class="row mt-4">
-                            @if(isset($hasil) && !$hasil->isEmpty())
-                            @foreach($hasil as $item)
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5>{{ $item->nama }}</h5>
-                                        <p>{{ $item->lokasi }}</p>
-                                        <button class="btn btn-primary" 
-                                                onclick="showLocation({{ $item->latitude }}, {{ $item->longitude }}, '{{ $item->nama }}')">
-                                            Lihat Lokasi di Peta
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            @else
-                            <p>Tidak ada hasil ditemukan.</p>
-                            @endif
-                        </div>
-
-                        <!-- Peta Leaflet -->
-                        <div id="map" style="height: 500px; width: 100%;"></div>
 
                     </div>
                 </div>
@@ -106,75 +139,5 @@
     </footer>
 </div>
 
-<!-- Link ke CSS Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-<!-- Script Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<script>
-    let map;
-    let userLocationMarker;
-
-    // Inisialisasi peta
-    function initMap() {
-    map = L.map('map').setView([6.2088, 106.8456], 13); // Default center (misalnya Jakarta)
-
-    // Menambahkan layer OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Mengambil lokasi pengguna
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            const userLat = position.coords.latitude;
-            const userLng = position.coords.longitude;
-
-            // Menandai lokasi pengguna di peta
-            userLocationMarker = L.marker([userLat, userLng]).addTo(map)
-                .bindPopup("Lokasi Anda")
-                .openPopup();
-
-            // Pusatkan peta ke lokasi pengguna
-            map.setView([userLat, userLng], 13);
-        }, function (error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    alert("Pengguna menolak permintaan lokasi. Silakan izinkan akses lokasi pada browser Anda.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    alert("Informasi lokasi tidak tersedia. Pastikan Anda terhubung dengan internet dan memiliki GPS aktif.");
-                    break;
-                case error.TIMEOUT:
-                    alert("Waktu permintaan lokasi telah habis. Coba lagi.");
-                    break;
-                default:
-                    alert("Terjadi kesalahan tidak terduga saat mendapatkan lokasi.");
-            }
-        });
-    } else {
-        alert("Geolocation tidak didukung oleh browser ini.");
-    }
-}
-
-
-
-    // Menampilkan lokasi ayam geprek di peta
-    function showLocation(lat, lng, name) {
-        const location = [lat, lng];
-
-        // Tambahkan marker untuk lokasi ayam geprek
-        L.marker(location).addTo(map)
-            .bindPopup(name)
-            .openPopup();
-
-        // Pusatkan peta ke lokasi ayam geprek
-        map.setView(location, 13);
-    }
-
-    // Panggil fungsi initMap setelah halaman selesai dimuat
-    window.onload = initMap;
-</script>
 
 @endsection
